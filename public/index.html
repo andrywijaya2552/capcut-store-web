@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="htmlTitle">CapCut Store ID - Jasa Beli & Aktivasi CapCut Pro</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; background-color: #060913; color: #e5e7eb; }
+    .glass-card { background: rgba(17, 24, 39, 0.55); backdrop-filter: blur(14px); }
+    .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: #1f2937; border-radius: 9999px; }
+    .glow { box-shadow: 0 0 40px -10px rgba(236, 72, 153, 0.55); }
+    .animate-float { animation: float 6s ease-in-out infinite; }
+    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <header class="sticky top-0 z-40 glass-card border-b border-gray-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center space-x-2.5 cursor-pointer" onclick="switchTab('store')">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-pink-500 to-purple-600 flex items-center justify-center text-white text-lg font-black shadow-lg shadow-pink-500/30">
+            <i class="ri-scissors-cut-fill"></i>
+          </div>
+          <span class="text-xl font-black tracking-tight text-white" id="brandSiteName">
+            CapCut<span class="text-pink-400">Store</span>
+          </span>
+        </div>
+
+        <div id="nav-user-section" class="hidden items-center space-x-3">
+          <div class="hidden sm:flex flex-col items-end">
+            <span class="text-[10px] text-gray-400 uppercase tracking-wide">Saldo Saya</span>
+            <p id="user-balance-text" class="text-xs sm:text-sm font-bold text-emerald-400 font-mono leading-tight">Rp 0</p>
+          </div>
+          <div class="relative">
+            <button id="userMenuBtn" class="flex items-center space-x-2 bg-gray-900 hover:bg-gray-800 border border-gray-800 rounded-xl px-3 py-1.5 text-sm font-medium transition">
+              <div class="w-7 h-7 rounded-lg bg-pink-500/20 text-pink-400 flex items-center justify-center font-bold text-xs" id="userAvatarText">U</div>
+              <span id="userNameText" class="text-gray-200 text-xs sm:text-sm max-w-[100px] truncate">User</span>
+              <span id="userRoleBadge" class="hidden text-[10px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded font-bold border border-amber-500/30">ADMIN</span>
+            </button>
+            <div id="userDropdown" class="hidden absolute right-0 mt-2 w-52 bg-gray-950 border border-gray-800 rounded-2xl shadow-2xl py-1.5 z-50">
+              <button onclick="switchTab('my-accounts')" class="w-full text-left flex items-center px-4 py-2.5 text-xs text-gray-300 hover:bg-gray-800/60"><i class="ri-user-line mr-2.5"></i> Akun Saya</button>
+              <button onclick="switchTab('topup')" class="w-full text-left flex items-center px-4 py-2.5 text-xs text-gray-300 hover:bg-gray-800/60"><i class="ri-wallet-line mr-2.5"></i> Top Up Saldo</button>
+              <div id="adminDropdownLink" class="hidden border-t border-gray-800 my-1 pt-1">
+                <button onclick="switchTab('admin')" class="w-full text-left flex items-center px-4 py-2.5 text-xs text-amber-400 hover:bg-amber-500/10"><i class="ri-admin-line mr-2.5"></i> Panel Admin</button>
+              </div>
+              <div class="border-t border-gray-800 my-1 pt-1">
+                <button onclick="logout()" class="w-full text-left flex items-center px-4 py-2.5 text-xs text-red-400 hover:bg-red-500/10"><i class="ri-logout-box-r-line mr-2.5"></i> Keluar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="nav-guest-section" class="flex items-center space-x-2">
+          <button onclick="openModal('modalLogin')" class="px-3.5 py-2 rounded-xl text-xs font-bold text-gray-300 hover:text-white hover:bg-gray-800/60 transition">Masuk</button>
+          <button onclick="openModal('modalRegister')" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-gradient-to-r from-pink-500 to-purple-600 text-white hover:from-pink-400 hover:to-purple-500 transition shadow-lg shadow-pink-500/20">Daftar Gratis</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="border-b border-gray-800/80 bg-[#0a0e1c] px-4">
+    <div class="max-w-7xl mx-auto flex space-x-1 sm:space-x-2 overflow-x-auto py-2 custom-scrollbar text-xs sm:text-sm font-medium">
+      <button onclick="switchTab('store')" id="tabBtn-store" class="tab-link px-3 sm:px-4 py-2 rounded-xl text-gray-400 hover:text-white hover:bg-gray-800/60 flex items-center gap-1.5 transition">
+        <i class="ri-store-3-line"></i> Katalog Akun
+      </button>
+      <button onclick="switchTab('my-accounts')" id="tabBtn-my-accounts" class="tab-link px-3 sm:px-4 py-2 rounded-xl text-gray-400 hover:text-white hover:bg-gray-800/60 flex items-center gap-1.5 transition">
+        <i class="ri-user-received-line"></i> Akun Saya
+      </button>
+      <button onclick="switchTab('topup')" id="tabBtn-topup" class="tab-link px-3 sm:px-4 py-2 rounded-xl text-gray-400 hover:text-white hover:bg-gray-800/60 flex items-center gap-1.5 transition">
+        <i class="ri-wallet-line"></i> Top Up Saldo
+      </button>
+      <button onclick="switchTab('admin')" id="tabBtn-admin" class="tab-link hidden px-3 sm:px-4 py-2 rounded-xl text-amber-400 bg-amber-500/10 hover:bg-amber-500/20 flex items-center gap-1.5 transition">
+        <i class="ri-admin-line"></i> Admin Panel
+      </button>
+    </div>
+  </nav>
+
+  <div class="bg-gradient-to-r from-pink-950/50 via-purple-950/50 to-gray-950 border-b border-pink-500/30 py-2 px-4 shadow-inner">
+    <div class="max-w-7xl mx-auto flex items-center space-x-3 overflow-hidden">
+      <div class="flex items-center space-x-1.5 shrink-0 bg-pink-500/20 border border-pink-500/40 text-pink-300 px-2.5 py-0.5 rounded-full text-[11px] font-bold">
+        <i class="ri-broadcast-fill text-pink-400 animate-pulse"></i>
+        <span>PENGUMUMAN</span>
+      </div>
+      <div class="flex-1 overflow-hidden relative">
+        <marquee id="broadcastMarquee" behavior="scroll" direction="left" scrollamount="6" class="text-xs text-gray-200 font-medium tracking-wide">
+          SELAMAT DATANG DI CAPCUT STORE ID! Jasa aktivasi akun CapCut Pro, dikirim manual oleh admin, garansi & aman. Proses cepat setiap hari.
+        </marquee>
+      </div>
+    </div>
+  </div>
+
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+    <section id="tab-store" class="tab-content space-y-8">
+      <div class="glass-card rounded-3xl p-8 sm:p-12 border border-gray-800 relative overflow-hidden">
+        <div class="absolute -top-20 -right-20 w-72 h-72 bg-pink-600/20 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-24 -left-16 w-72 h-72 bg-purple-600/20 rounded-full blur-3xl"></div>
+        <div class="relative max-w-2xl">
+          <span class="inline-flex items-center gap-1.5 text-[11px] font-bold bg-pink-500/15 border border-pink-500/30 text-pink-300 px-3 py-1 rounded-full mb-4">
+            <i class="ri-shield-check-fill"></i> Diproses Manual oleh Admin
+          </span>
+          <h1 class="text-3xl sm:text-5xl font-black text-white leading-tight">
+            Jasa Beli & Aktivasi <span class="bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent">CapCut Pro</span>
+          </h1>
+          <p class="mt-3 text-sm sm:text-base text-gray-400 leading-relaxed" id="brandTagline">
+            Jasa Beli & Aktivasi Akun CapCut Pro Terpercaya, Diproses Manual oleh Admin
+          </p>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <button onclick="document.getElementById('packagesSection').scrollIntoView({behavior:'smooth'})" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-400 hover:to-purple-500 text-white text-sm font-bold shadow-lg shadow-pink-500/30 transition flex items-center gap-2">
+              <i class="ri-shopping-bag-3-line"></i> Lihat Harga
+            </button>
+            <button onclick="switchTab('topup')" class="px-5 py-2.5 rounded-xl bg-gray-900 hover:bg-gray-800 border border-gray-700 text-gray-200 text-sm font-bold transition flex items-center gap-2">
+              <i class="ri-wallet-3-line"></i> Top Up Saldo
+            </button>
+          </div>
+          <div class="mt-8 grid grid-cols-3 gap-4 max-w-md">
+            <div><p class="text-2xl font-black text-white">100%</p><p class="text-[11px] text-gray-400">Garansi Aman</p></div>
+            <div><p class="text-2xl font-black text-white">Maks 1x24</p><p class="text-[11px] text-gray-400">Jam Diproses</p></div>
+            <div><p class="text-2xl font-black text-white">Manual</p><p class="text-[11px] text-gray-400">Oleh Admin</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="packagesSection">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-lg font-bold text-white flex items-center gap-2"><i class="ri-price-tag-3-line text-pink-400"></i> Daftar Harga Produk</h2>
+        </div>
+        <div id="packagesGridContainer" class="space-y-3">
+          <p class="text-gray-500 text-sm">Memuat produk...</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="tab-my-accounts" class="tab-content hidden space-y-6">
+      <div class="glass-card rounded-2xl p-6 border border-gray-800">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-5 border-b border-gray-800 mb-5">
+          <div>
+            <h2 class="text-lg font-bold text-white flex items-center gap-2"><i class="ri-user-received-line text-pink-400"></i> Pesanan & Akun CapCut Pro Saya</h2>
+            <p class="text-xs text-gray-400">Status pesanan dan kredensial akun yang telah dikirim admin</p>
+          </div>
+          <button onclick="loadUserAccounts()" class="px-3.5 py-1.5 bg-gray-800 hover:bg-gray-700 text-xs font-semibold text-gray-300 rounded-xl flex items-center gap-1.5 transition">
+            <i class="ri-refresh-line"></i> Refresh
+          </button>
+        </div>
+        <div id="userAccountsContainer" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <p class="text-center text-gray-500 text-xs py-10 col-span-2">Memuat daftar akun Anda...</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="tab-topup" class="tab-content hidden space-y-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div class="lg:col-span-6 glass-card rounded-2xl p-6 border border-gray-800">
+          <div class="flex items-center space-x-3 pb-4 border-b border-gray-800 mb-5">
+            <div class="w-10 h-10 rounded-xl bg-pink-500/20 text-pink-400 flex items-center justify-center text-xl">
+              <i class="ri-wallet-3-fill"></i>
+            </div>
+            <div>
+              <h2 class="text-base font-bold text-white">Top Up Saldo Akun</h2>
+              <p class="text-xs text-gray-400">Deposit saldo manual via QRIS All Payment, E-Wallet & Bank</p>
+            </div>
+          </div>
+
+          <form id="topupForm" onsubmit="handleRequestTopup(event)" class="space-y-4">
+            <div>
+              <label class="block text-xs font-semibold text-gray-300 mb-1.5">Metode Pembayaran</label>
+              <select id="topupPaymentSelect" onchange="handlePaymentChange()" class="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-2.5 text-sm text-white focus:border-pink-500 outline-none transition">
+              </select>
+            </div>
+
+            <div id="flowixSubOptions" class="hidden p-3 rounded-xl bg-emerald-950/30 border border-emerald-500/30 space-y-2">
+              <label class="block text-xs font-bold text-emerald-400">Pilih Saluran Pembayaran Flowix:</label>
+              <div class="grid grid-cols-3 gap-2">
+                <label class="cursor-pointer">
+                  <input type="radio" name="flowixChannel" value="QRIS" checked class="hidden peer">
+                  <div class="py-2 rounded-lg bg-gray-900 border border-gray-700 peer-checked:border-emerald-500 peer-checked:bg-emerald-500/10 text-center transition">
+                    <i class="ri-qr-code-line block text-emerald-400 text-base"></i>
+                    <span class="text-[10px] font-bold text-gray-300 peer-checked:text-emerald-300">QRIS</span>
+                  </div>
+                </label>
+                <label class="cursor-pointer">
+                  <input type="radio" name="flowixChannel" value="BCAVA" class="hidden peer">
+                  <div class="py-2 rounded-lg bg-gray-900 border border-gray-700 peer-checked:border-emerald-500 peer-checked:bg-emerald-500/10 text-center transition">
+                    <i class="ri-bank-line block text-emerald-400 text-base"></i>
+                    <span class="text-[10px] font-bold text-gray-300 peer-checked:text-emerald-300">BCA VA</span>
+                  </div>
+                </label>
+                <label class="cursor-pointer">
+                  <input type="radio" name="flowixChannel" value="MANDIRIVA" class="hidden peer">
+                  <div class="py-2 rounded-lg bg-gray-900 border border-gray-700 peer-checked:border-emerald-500 peer-checked:bg-emerald-500/10 text-center transition">
+                    <i class="ri-bank-line block text-emerald-400 text-base"></i>
+                    <span class="text-[10px] font-bold text-gray-300 peer-checked:text-emerald-300">Mandiri VA</span>
+                  </div>
+                </label>
+              </div>
+              <p class="text-[10px] text-gray-400 italic">Gateway Flowix (flowix.web.id) - saldo langsung masuk otomatis setelah pembayaran.</p>
+            </div>
+
+            <div id="paymentInstructionBox" class="p-4 rounded-xl bg-gray-900/80 border border-gray-800 space-y-2 text-xs">
+              <div class="flex justify-between items-center text-gray-300">
+                <span class="font-semibold text-pink-400" id="payAccName">Atas Nama: -</span>
+                <span class="font-bold text-white font-mono" id="payAccNumber">Nomor: -</span>
+              </div>
+              <div id="payQrContainer" class="hidden text-center py-2">
+                <img id="payQrImg" src="" alt="QRIS Code" class="w-44 h-44 mx-auto rounded-xl border border-gray-700 bg-white p-2">
+                <span class="text-[11px] text-gray-400 mt-1 block">Scan kode QRIS menggunakan E-Wallet / Mobile Banking</span>
+              </div>
+              <p id="payInstructionText" class="text-gray-400 text-[11px]"></p>
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-gray-300 mb-1.5">Nominal Deposit (Min <span id="minTopupLabel">Rp 75</span>)</label>
+              <input type="number" id="topupAmount" min="75" step="1" required placeholder="Contoh: 10000" class="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-2.5 text-sm text-white focus:border-pink-500 outline-none transition font-mono">
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-gray-300 mb-1.5">Catatan Pengirim (Opsional)</label>
+              <input type="text" id="topupNotes" placeholder="Contoh: Transfer atas nama Dimas" class="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-2.5 text-sm text-white focus:border-pink-500 outline-none transition">
+            </div>
+
+            <button type="submit" class="w-full py-3 bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-400 hover:to-purple-500 text-white font-extrabold rounded-xl text-sm shadow-lg shadow-pink-500/20 transition flex items-center justify-center gap-2">
+              <i class="ri-file-list-3-line"></i> Buat Tiket Deposit
+            </button>
+          </form>
+        </div>
+
+        <div class="lg:col-span-6 glass-card rounded-2xl p-6 border border-gray-800 flex flex-col">
+          <div class="flex justify-between items-center pb-4 border-b border-gray-800 mb-4">
+            <h3 class="text-base font-bold text-white">Riwayat Deposit Saldo</h3>
+            <button onclick="loadUserTopups()" class="px-2.5 py-1 bg-gray-800 hover:bg-gray-700 rounded-lg text-xs text-gray-300"><i class="ri-refresh-line"></i></button>
+          </div>
+          <div class="flex-1 overflow-y-auto max-h-[500px] custom-scrollbar space-y-3" id="topupListContainer">
+            <p class="text-center text-gray-500 text-xs py-10">Belum ada riwayat deposit.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tab-admin" class="tab-content hidden space-y-6">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div>
+          <h2 class="text-xl font-black text-white flex items-center gap-2"><i class="ri-admin-line text-amber-400"></i> Panel Administrator</h2>
+          <p class="text-xs text-gray-400">Kelola deposit, produk, voucher, pengguna & pengaturan website</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 lg:grid-cols-6 gap-4">
+        <div class="glass-card rounded-2xl p-4 border border-gray-800"><p class="text-[11px] text-gray-400">Total User</p><p id="admStatUsers" class="text-2xl font-black text-pink-400 mt-1 font-mono">0</p></div>
+        <div class="glass-card rounded-2xl p-4 border border-gray-800"><p class="text-[11px] text-gray-400">Total Pesanan</p><p id="admStatAccounts" class="text-2xl font-black text-purple-400 mt-1 font-mono">0</p></div>
+        <div class="glass-card rounded-2xl p-4 border border-gray-800"><p class="text-[11px] text-gray-400">Perlu Diproses</p><p id="admStatPendingOrders" class="text-2xl font-black text-orange-400 mt-1 font-mono">0</p></div>
+        <div class="glass-card rounded-2xl p-4 border border-gray-800"><p class="text-[11px] text-gray-400">Total Deposit</p><p id="admStatDeposit" class="text-2xl font-black text-emerald-400 mt-1 font-mono">Rp 0</p></div>
+        <div class="glass-card rounded-2xl p-4 border border-gray-800"><p class="text-[11px] text-gray-400">Pendapatan</p><p id="admStatRevenue" class="text-2xl font-black text-cyan-400 mt-1 font-mono">Rp 0</p></div>
+        <div class="glass-card rounded-2xl p-4 border border-gray-800"><p class="text-[11px] text-gray-400">Deposit Pending</p><p id="admStatPendingDep" class="text-2xl font-black text-amber-400 mt-1 font-mono">0</p></div>
+      </div>
+
+      <div class="border-b border-gray-800 flex space-x-2 text-xs font-semibold overflow-x-auto custom-scrollbar">
+        <button onclick="switchAdminSubTab('adm-topups')" id="admSubBtn-adm-topups" class="px-4 py-2.5 rounded-t-xl bg-gray-800 text-white border-t-2 border-pink-500 shrink-0"><i class="ri-money-dollar-circle-line mr-1"></i> Konfirmasi Deposit</button>
+        <button onclick="switchAdminSubTab('adm-accounts')" id="admSubBtn-adm-accounts" class="px-4 py-2.5 rounded-t-xl text-gray-400 hover:text-white shrink-0"><i class="ri-user-shared-line mr-1"></i> Pesanan Masuk</button>
+        <button onclick="switchAdminSubTab('adm-packages')" id="admSubBtn-adm-packages" class="px-4 py-2.5 rounded-t-xl text-gray-400 hover:text-white shrink-0"><i class="ri-price-tag-3-line mr-1"></i> Kelola Produk</button>
+        <button onclick="switchAdminSubTab('adm-vouchers')" id="admSubBtn-adm-vouchers" class="px-4 py-2.5 rounded-t-xl text-gray-400 hover:text-white shrink-0"><i class="ri-coupon-3-line mr-1"></i> Voucher</button>
+        <button onclick="switchAdminSubTab('adm-users')" id="admSubBtn-adm-users" class="px-4 py-2.5 rounded-t-xl text-gray-400 hover:text-white shrink-0"><i class="ri-group-line mr-1"></i> Pengguna & Saldo</button>
+        <button onclick="switchAdminSubTab('adm-settings')" id="admSubBtn-adm-settings" class="px-4 py-2.5 rounded-t-xl text-gray-400 hover:text-white shrink-0"><i class="ri-settings-4-line mr-1"></i> Pengaturan</button>
+      </div>
+
+      <div id="admSubTab-adm-topups" class="admin-subcontent space-y-4">
+        <div class="glass-card rounded-2xl p-5 border border-gray-800">
+          <h3 class="text-sm font-bold text-white mb-3">Daftar Tiket Topup Masuk</h3>
+          <div class="overflow-x-auto custom-scrollbar">
+            <table class="w-full text-left text-xs border-collapse">
+              <thead><tr class="bg-gray-800/80 text-gray-400 border-b border-gray-700">
+                <th class="py-2.5 px-3">ID Tiket</th><th class="py-2.5 px-3">Username</th><th class="py-2.5 px-3">Metode</th><th class="py-2.5 px-3">Total Bayar</th><th class="py-2.5 px-3">Bukti</th><th class="py-2.5 px-3 text-center">Status</th><th class="py-2.5 px-3 text-center">Aksi</th>
+              </tr></thead>
+              <tbody id="admTopupTableBody" class="divide-y divide-gray-800 text-gray-300"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div id="admSubTab-adm-accounts" class="admin-subcontent hidden space-y-4">
+        <div class="glass-card rounded-2xl p-5 border border-gray-800">
+          <h3 class="text-sm font-bold text-white mb-3">Daftar Pesanan Jasa CapCut Pro</h3>
+          <p class="text-[11px] text-gray-400 mb-3">Isi kredensial akun asli lalu klik "Kirim Kredensial" untuk mengirim ke pembeli. Status berubah menjadi Selesai/Dikirim.</p>
+          <div class="overflow-x-auto custom-scrollbar">
+            <table class="w-full text-left text-xs border-collapse">
+              <thead><tr class="bg-gray-800/80 text-gray-400 border-b border-gray-700">
+                <th class="py-2.5 px-3">ID</th><th class="py-2.5 px-3">User</th><th class="py-2.5 px-3">Produk</th><th class="py-2.5 px-3">Email Akun</th><th class="py-2.5 px-3">Password</th><th class="py-2.5 px-3">Status</th><th class="py-2.5 px-3 text-center">Aksi</th>
+              </tr></thead>
+              <tbody id="admAccountsTableBody" class="divide-y divide-gray-800 text-gray-300"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div id="admSubTab-adm-packages" class="admin-subcontent hidden space-y-4">
+        <div class="glass-card rounded-2xl p-5 border border-gray-800">
+          <div class="flex justify-between items-center mb-4">
+            <h3 class="text-sm font-bold text-white">Daftar Produk</h3>
+            <button onclick="openAddPackageModal()" class="px-3 py-1.5 bg-pink-500 hover:bg-pink-400 text-white rounded-lg text-xs font-bold"><i class="ri-add-line"></i> Tambah Produk</button>
+          </div>
+          <div class="overflow-x-auto custom-scrollbar">
+            <table class="w-full text-left text-xs border-collapse">
+              <thead><tr class="bg-gray-800/80 text-gray-400 border-b border-gray-700">
+                <th class="py-2.5 px-3">Nama Produk</th><th class="py-2.5 px-3">Harga</th><th class="py-2.5 px-3 text-center">Stok</th><th class="py-2.5 px-3 text-center">Aksi</th>
+              </tr></thead>
+              <tbody id="admPackagesTableBody" class="divide-y divide-gray-800 text-gray-300"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div id="admSubTab-adm-vouchers" class="admin-subcontent hidden space-y-4">
+        <div class="glass-card rounded-2xl p-5 border border-gray-800">
+          <div class="flex justify-between items-center mb-4">
+            <h3 class="text-sm font-bold text-white">Kode Voucher Promo</h3>
+            <button onclick="openAddVoucherModal()" class="px-3 py-1.5 bg-emerald-500 hover:bg-emerald-400 text-black rounded-lg text-xs font-bold"><i class="ri-add-line"></i> Buat Voucher</button>
+          </div>
+          <div class="overflow-x-auto custom-scrollbar">
+            <table class="w-full text-left text-xs border-collapse">
+              <thead><tr class="bg-gray-800/80 text-gray-400 border-b border-gray-700">
+                <th class="py-2.5 px-3">Kode</th><th class="py-2.5 px-3">Diskon</th><th class="py-2.5 px-3">Min Order</th><th class="py-2.5 px-3 text-center">Pemakaian</th><th class="py-2.5 px-3 text-center">Aksi</th>
+              </tr></thead>
+              <tbody id="admVouchersTableBody" class="divide-y divide-gray-800 text-gray-300"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div id="admSubTab-adm-users" class="admin-subcontent hidden space-y-4">
+        <div class="glass-card rounded-2xl p-5 border border-gray-800">
+          <h3 class="text-sm font-bold text-white mb-3">Daftar Pengguna & Ubah Saldo Manual</h3>
+          <div class="overflow-x-auto custom-scrollbar">
+            <table class="w-full text-left text-xs border-collapse">
+              <thead><tr class="bg-gray-800/80 text-gray-400 border-b border-gray-700">
+                <th class="py-2.5 px-3">Username</th><th class="py-2.5 px-3">Nama Lengkap</th><th class="py-2.5 px-3">Role</th><th class="py-2.5 px-3">Saldo</th><th class="py-2.5 px-3 text-center">Set Saldo</th>
+              </tr></thead>
+              <tbody id="admUsersTableBody" class="divide-y divide-gray-800 text-gray-300"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div id="admSubTab-adm-settings" class="admin-subcontent hidden space-y-4">
+        <div class="glass-card rounded-2xl p-6 border border-gray-800">
+          <h3 class="text-sm font-bold text-white mb-4 flex items-center gap-2"><i class="ri-settings-line text-pink-400"></i> Konfigurasi Toko</h3>
+          <form onsubmit="handleSaveSettings(event)" class="space-y-4 max-w-2xl">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-semibold text-gray-300 mb-1">Nama Website Toko</label>
+                <input type="text" id="settingSiteName" required class="w-full bg-gray-900 border border-gray-700 rounded-xl px-3.5 py-2 text-xs text-white focus:border-pink-500 outline-none">
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-gray-300 mb-1">WhatsApp Admin / CS</label>
+                <input type="text" id="settingContactWa" placeholder="62858..." class="w-full bg-gray-900 border border-gray-700 rounded-xl px-3.5 py-2 text-xs text-white focus:border-pink-500 outline-none">
+              </div>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-gray-300 mb-1">Tagline / Deskripsi Singkat</label>
+              <input type="text" id="settingSiteTagline" class="w-full bg-gray-900 border border-gray-700 rounded-xl px-3.5 py-2 text-xs text-white focus:border-pink-500 outline-none">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-gray-300 mb-1">Minimal Top Up (Rp)</label>
+              <input type="number" id="settingMinTopup" min="1" class="w-full bg-gray-900 border border-gray-700 rounded-xl px-3.5 py-2 text-xs text-white focus:border-pink-500 outline-none font-mono">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-gray-300 mb-1">Teks Running Broadcast Pengumuman</label>
+              <textarea id="settingAnnouncement" rows="3" class="w-full bg-gray-900 border border-gray-700 rounded-xl px-3.5 py-2 text-xs text-white focus:border-pink-500 outline-none leading-relaxed"></textarea>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-gray-300 mb-1">Catatan Pengiriman (tampil saat checkout)</label>
+              <textarea id="settingDeliveryNote" rows="2" placeholder="Pesanan diproses admin maksimal 1x24 jam..." class="w-full bg-gray-900 border border-gray-700 rounded-xl px-3.5 py-2 text-xs text-white focus:border-pink-500 outline-none leading-relaxed"></textarea>
+            </div>
+            <div class="p-4 rounded-xl bg-emerald-950/30 border border-emerald-500/30 space-y-3">
+              <div class="flex items-center justify-between">
+                <p class="text-xs font-bold text-emerald-400"><i class="ri-flashlight-fill"></i> Integrasi Gateway Otomatis Flowix (flowix.web.id)</p>
+                <span class="text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded font-mono">flowix.web.id</span>
+              </div>
+              <p class="text-[10px] text-gray-400">Topup saldo otomatis via QRIS & Virtual Account. Saldo masuk otomatis setelah pembayaran terverifikasi.</p>
+              <div>
+                <label class="block text-xs font-semibold text-emerald-300 mb-1">Flowix API Key</label>
+                <input type="text" id="settingFlowixApiKey" placeholder="sk-..." class="w-full bg-gray-900 border border-gray-700 rounded-xl px-3.5 py-2 text-xs text-white focus:border-emerald-500 outline-none font-mono">
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-xs font-semibold text-emerald-300 mb-1">Flowix Merchant ID (Opsional)</label>
+                  <input type="text" id="settingFlowixMerchantId" placeholder="Merchant ID Flowix" class="w-full bg-gray-900 border border-gray-700 rounded-xl px-3.5 py-2 text-xs text-white focus:border-emerald-500 outline-none font-mono">
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-emerald-300 mb-1">Flowix Webhook Secret (Opsional)</label>
+                  <input type="text" id="settingFlowixWebhookSecret" placeholder="whsec_..." class="w-full bg-gray-900 border border-gray-700 rounded-xl px-3.5 py-2 text-xs text-white focus:border-emerald-500 outline-none font-mono">
+                </div>
+              </div>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" id="settingFlowixAutoActive" class="w-4 h-4 accent-emerald-500">
+                <span class="text-xs text-gray-300">Aktifkan Flowix sebagai metode topup otomatis</span>
+              </label>
+              <div class="p-3 rounded-lg bg-gray-950 border border-gray-800">
+                <p class="font-semibold text-gray-300 mb-0.5 text-[11px]">Webhook URL untuk didaftarkan di dashboard Flowix:</p>
+                <code id="displayFlowixWebhookUrl" class="text-emerald-400 font-mono select-all text-[11px] break-all">https://domain-anda.com/webhook/flowix</code>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-xl bg-gray-900/60 border border-gray-800 space-y-3">
+              <p class="text-xs font-bold text-pink-400"><i class="ri-bank-card-line"></i> Metode Pembayaran Manual</p>
+              <p class="text-[10px] text-gray-400">Isi nomor rekening / e-wallet yang tampil ke pembeli. QRIS image bisa diisi URL gambar (opsional).</p>
+              <div id="adminPaymentsContainer" class="space-y-3"></div>
+            </div>
+            <button type="submit" class="px-5 py-2.5 bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-400 hover:to-purple-500 text-white font-extrabold rounded-xl text-xs shadow-lg shadow-pink-500/20 transition">Simpan Pengaturan</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-gray-800/80 bg-[#0a0e1c] py-6 mt-8">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-gray-500">
+      <p>&copy; <span id="footerYear"></span> <span id="footerSiteName">CapCut Store ID</span>. All rights reserved.</p>
+      <a href="#" id="footerWaLink" target="_blank" class="hover:text-pink-400 transition flex items-center gap-1"><i class="ri-whatsapp-line text-emerald-400"></i> WhatsApp CS</a>
+    </div>
+  </footer>
+
+  <div id="liveChatWidget" class="fixed bottom-6 right-6 z-50">
+    <button onclick="toggleChatBox()" id="chatToggleBtn" class="relative w-14 h-14 rounded-full bg-gradient-to-tr from-pink-500 to-purple-600 hover:from-pink-400 hover:to-purple-500 text-white font-black flex items-center justify-center shadow-xl shadow-pink-500/30 hover:scale-105 transition duration-200">
+      <i id="chatBtnIcon" class="ri-message-3-fill text-2xl"></i>
+    </button>
+    <div id="chatBoxWindow" class="hidden absolute bottom-16 right-0 w-[330px] sm:w-[370px] h-[480px] rounded-2xl glass-card border border-pink-500/30 shadow-2xl flex flex-col overflow-hidden bg-gray-950/95 backdrop-blur-xl">
+      <div class="p-3.5 bg-gradient-to-r from-pink-600 to-purple-600 flex justify-between items-center">
+        <div class="flex items-center space-x-2">
+          <i class="ri-customer-service-2-fill text-white text-lg"></i>
+          <div><p class="text-white font-bold text-xs">Live Chat Support</p><p class="text-[10px] text-pink-100">Online 24 Jam</p></div>
+        </div>
+        <button onclick="toggleChatBox()" class="text-white/80 hover:text-white"><i class="ri-close-line text-lg"></i></button>
+      </div>
+      <div id="chatMessagesContainer" class="flex-1 p-3.5 overflow-y-auto custom-scrollbar space-y-2.5 text-xs"></div>
+      <div id="guestChatNameBox" class="px-3 py-1.5 bg-gray-900 border-t border-gray-800 flex items-center gap-2">
+        <i class="ri-user-line text-gray-500 text-xs"></i>
+        <input type="text" id="guestChatNameInput" placeholder="Nama Anda" class="bg-gray-800 text-white text-[11px] px-2 py-0.5 rounded outline-none w-full">
+      </div>
+      <form onsubmit="handleSendLiveChat(event)" class="p-2.5 bg-gray-900 border-t border-gray-800 flex gap-2">
+        <input type="text" id="chatMessageInput" required placeholder="Tanyakan seputar akun CapCut..." class="w-full bg-gray-800/90 border border-gray-700/80 rounded-xl px-3 py-2 text-xs text-white focus:border-pink-500 outline-none">
+        <button type="submit" class="w-9 h-9 shrink-0 rounded-xl bg-gradient-to-tr from-pink-500 to-purple-600 text-white flex items-center justify-center"><i class="ri-send-plane-2-fill"></i></button>
+      </form>
+    </div>
+  </div>
+
+  <div id="modalCheckout" class="fixed inset-0 z-50 hidden bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="glass-card max-w-md w-full rounded-2xl p-6 border border-pink-500/40 shadow-2xl relative">
+      <button onclick="closeModal('modalCheckout')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg"><i class="ri-close-line"></i></button>
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-xl bg-pink-500/20 text-pink-400 flex items-center justify-center text-xl"><i class="ri-scissors-cut-fill"></i></div>
+        <div>
+          <h3 class="text-base font-bold text-white" id="modalBuyPkgName">Pesan Jasa CapCut Pro</h3>
+          <p class="text-xs text-gray-400" id="modalBuyPkgSpecs">Pro | 30 Hari</p>
+        </div>
+      </div>
+      <form onsubmit="handleConfirmBuy(event)" class="space-y-4">
+        <input type="hidden" id="buyPackageId">
+        <div>
+          <label class="block text-xs font-semibold text-gray-300 mb-1.5">Kode Voucher Diskon (Opsional)</label>
+          <div class="flex gap-2">
+            <input type="text" id="buyVoucherInput" placeholder="Contoh: CAPCUTNEW" class="w-full uppercase font-mono tracking-wider bg-gray-900 border border-gray-700 rounded-xl px-3.5 py-2 text-xs text-white focus:border-pink-500 outline-none">
+            <button type="button" onclick="applyBuyVoucher()" class="px-4 py-2 bg-pink-500 hover:bg-pink-400 text-white font-bold rounded-xl text-xs shrink-0 transition">Pakai</button>
+          </div>
+          <div id="buyVoucherMsg" class="text-[11px] mt-1 hidden"></div>
+        </div>
+        <div class="p-3.5 rounded-xl bg-gray-900/80 border border-gray-800 text-xs space-y-1.5">
+          <div class="flex justify-between text-gray-300"><span>Harga Produk:</span><span id="buyRawPrice" class="font-mono text-gray-200">Rp 0</span></div>
+          <div id="buyDiscountRow" class="hidden justify-between text-emerald-400"><span>Diskon Voucher:</span><span id="buyDiscountVal" class="font-mono font-bold">- Rp 0</span></div>
+          <div class="flex justify-between items-center border-t border-gray-800 pt-1.5 mt-1.5"><span class="font-bold text-white">Total Bayar:</span><span id="buyFinalPrice" class="font-mono text-pink-400 text-sm">Rp 0</span></div>
+          <div class="flex justify-between text-gray-400 pt-1"><span>Saldo Anda:</span><span id="buyUserBalance" class="font-mono text-gray-200">Rp 0</span></div>
+        </div>
+        <div class="p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-[11px] flex gap-2">
+          <i class="ri-time-line shrink-0"></i>
+          <span id="buyDeliveryNote">Pesanan diproses manual oleh admin maksimal 1x24 jam. Kredensial akun asli dikirim di halaman "Akun Saya".</span>
+        </div>
+        <button type="submit" id="btnConfirmBuy" class="w-full py-2.5 bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-400 hover:to-purple-500 text-white font-black rounded-xl text-xs shadow-lg shadow-pink-500/20 transition flex items-center justify-center gap-2">
+          <i class="ri-shopping-bag-3-fill"></i> Bayar & Buat Pesanan
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div id="modalAccountResult" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="glass-card max-w-md w-full rounded-2xl p-6 border border-emerald-500/40 shadow-2xl relative">
+      <button onclick="closeModal('modalAccountResult')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg"><i class="ri-close-line"></i></button>
+      <div class="text-center mb-4">
+        <div class="w-14 h-14 mx-auto rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-3xl mb-2"><i class="ri-checkbox-circle-fill"></i></div>
+        <h3 class="text-base font-bold text-white">Pesanan Berhasil Dibuat!</h3>
+        <p class="text-xs text-gray-400" id="resultPkgName">Produk</p>
+      </div>
+      <div class="space-y-2.5 text-xs">
+        <div class="p-3 rounded-xl bg-gray-900 border border-gray-800 flex justify-between items-center">
+          <span class="text-gray-400">ID Pesanan</span>
+          <span id="resultOrderId" class="font-mono font-bold text-pink-300">-</span>
+        </div>
+        <div class="p-3 rounded-xl bg-gray-900 border border-gray-800 flex justify-between items-center">
+          <span class="text-gray-400">Status</span>
+          <span id="resultStatus" class="px-2 py-0.5 rounded-full font-bold text-[10px] bg-amber-500/20 text-amber-400">Menunggu Diproses</span>
+        </div>
+        <div class="p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-[11px] flex gap-2">
+          <i class="ri-information-line shrink-0"></i>
+          <span id="resultNote">Admin akan mengirim kredensial akun CapCut Pro Anda di halaman "Akun Saya" maksimal 1x24 jam.</span>
+        </div>
+      </div>
+      <button onclick="closeModal('modalAccountResult'); switchTab('my-accounts')" class="mt-4 w-full py-2.5 bg-emerald-500 hover:bg-emerald-400 text-black font-extrabold rounded-xl text-xs transition">Lihat Pesanan Saya</button>
+    </div>
+  </div>
+
+  <div id="modalLogin" class="fixed inset-0 z-50 hidden bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="glass-card max-w-sm w-full rounded-2xl p-6 border border-gray-700 shadow-2xl relative">
+      <button onclick="closeModal('modalLogin')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg"><i class="ri-close-line"></i></button>
+      <h3 class="text-lg font-bold text-white mb-1">Masuk Akun</h3>
+      <p class="text-xs text-gray-400 mb-4">Selamat datang kembali di toko kami</p>
+      <form onsubmit="handleLogin(event)" class="space-y-3">
+        <div>
+          <label class="block text-xs font-semibold text-gray-300 mb-1">Username</label>
+          <input type="text" id="loginUsername" required placeholder="Masukkan username" class="w-full bg-gray-900 border border-gray-700 rounded-xl px-3.5 py-2 text-xs text-white focus:border-pink-500 outline-none">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-gray-300 mb-1">Password</label>
+          <input type="password" id="loginPassword" required placeholder="Masukkan password" class="w-full bg-gray-900 border border-gray-700 rounded-xl px-3.5 py-2 text-xs text-white focus:border-pink-500 outline-none">
+        </div>
+        <button type="submit" class="w-full py-2.5 bg-gradient-to-r from-pink-500 to-purple-600 text-white font-extrabold rounded-xl text-xs transition">Masuk</button>
+      </form>
+      <p class="text-center text-xs text-gray-400 mt-4">Belum punya akun? <button onclick="closeModal('modalLogin'); openModal('modalRegister')" class="text-pink-400 font-bold hover:underline">Daftar sekarang</button></p>
+    </div>
+  </div>
+
+  <div id="modalRegister" class="fixed inset-0 z-50 hidden bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="glass-card max-w-sm w-full rounded-2xl p-6 border border-gray-700 shadow-2xl relative">
+      <button onclick="closeModal('modalRegister')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg"><i class="ri-close-line"></i></button>
+      <h3 class="text-lg font-bold text-white mb-1">Daftar Akun Baru</h3>
+      <p class="text-xs text-gray-400 mb-4">Gratis, tanpa biaya pendaftaran</p>
+      <form onsubmit="handleRegister(event)" class="space-y-3">
+        <div>
+          <label class="block text-xs font-semibold text-gray-300 mb-1">Nama Lengkap</label>
+          <input type="text" id="regFullName" required placeholder="Nama lengkap" class="w-full bg-gray-900 border border-gray-700 rounded-xl px-3.5 py-2 text-xs text-white focus:border-pink-500 outline-none">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-gray-300 mb-1">Username</label>
+          <input type="text" id="regUsername" required placeholder="Contoh: userptero" class="w-full bg-gray-900 border border-gray-700 rounded-xl px-3.5 py-2 text-xs text-white focus:border-pink-500 outline-none">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-gray-300 mb-1">Password</label>
+          <input type="password" id="regPassword" required placeholder="Minimal 6 karakter" class="w-full bg-gray-900 border border-gray-700 rounded-xl px-3.5 py-2 text-xs text-white focus:border-pink-500 outline-none">
+        </div>
+        <button type="submit" class="w-full py-2.5 bg-gradient-to-r from-pink-500 to-purple-600 text-white font-extrabold rounded-xl text-xs transition">Daftar</button>
+      </form>
+      <p class="text-center text-xs text-gray-400 mt-4">Sudah punya akun? <button onclick="closeModal('modalRegister'); openModal('modalLogin')" class="text-pink-400 font-bold hover:underline">Masuk</button></p>
+    </div>
+  </div>
+
+  <div id="modalAdminPackage" class="fixed inset-0 z-50 hidden bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="glass-card max-w-md w-full rounded-2xl p-6 border border-gray-700 shadow-2xl relative">
+      <button onclick="closeModal('modalAdminPackage')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg"><i class="ri-close-line"></i></button>
+      <h3 class="text-base font-bold text-white mb-3">Tambah / Edit Produk</h3>
+      <form onsubmit="handleSaveAdminPackage(event)" class="space-y-3">
+        <input type="hidden" id="adminPkgId">
+        <div><label class="block text-xs font-semibold text-gray-300 mb-1">Nama Produk</label>
+          <input type="text" id="adminPkgName" required placeholder="Contoh: CapCut Pro 14 Hari" class="w-full bg-gray-900 border border-gray-700 rounded-xl px-3 py-2 text-xs text-white focus:border-pink-500 outline-none"></div>
+        <div class="grid grid-cols-2 gap-2">
+          <div><label class="block text-xs font-semibold text-gray-300 mb-1">Harga (Rp)</label>
+            <input type="number" id="adminPkgPrice" required placeholder="25000" class="w-full bg-gray-900 border border-gray-700 rounded-xl px-3 py-2 text-xs text-white focus:border-pink-500 outline-none"></div>
+          <div><label class="block text-xs font-semibold text-gray-300 mb-1">Stok Tersedia</label>
+            <input type="number" id="adminPkgStock" min="0" placeholder="10" class="w-full bg-gray-900 border border-gray-700 rounded-xl px-3 py-2 text-xs text-white focus:border-pink-500 outline-none font-mono"></div>
+        </div>
+        <div><label class="block text-xs font-semibold text-gray-300 mb-1">Badge Populer</label>
+          <select id="adminPkgPopular" class="w-full bg-gray-900 border border-gray-700 rounded-xl px-3 py-2 text-xs text-white focus:border-pink-500 outline-none">
+            <option value="false">Tidak</option><option value="true">Ya (Paling Laris)</option>
+          </select></div>
+        <div><label class="block text-xs font-semibold text-gray-300 mb-1">Deskripsi</label>
+          <textarea id="adminPkgDesc" rows="2" class="w-full bg-gray-900 border border-gray-700 rounded-xl px-3 py-2 text-xs text-white focus:border-pink-500 outline-none"></textarea></div>
+        <button type="submit" class="w-full py-2.5 bg-pink-500 hover:bg-pink-400 text-white font-extrabold rounded-xl text-xs transition">Simpan Produk</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="modalAdminVoucher" class="fixed inset-0 z-50 hidden bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="glass-card max-w-md w-full rounded-2xl p-6 border border-gray-700 shadow-2xl relative">
+      <button onclick="closeModal('modalAdminVoucher')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg"><i class="ri-close-line"></i></button>
+      <h3 class="text-base font-bold text-white mb-3">Buat Voucher Promo</h3>
+      <form onsubmit="handleSaveAdminVoucher(event)" class="space-y-3">
+        <div><label class="block text-xs font-semibold text-gray-300 mb-1">Kode Voucher</label>
+          <input type="text" id="adminVoucherCode" required placeholder="CAPCUTNEW" class="w-full uppercase font-mono bg-gray-900 border border-gray-700 rounded-xl px-3 py-2 text-xs text-white focus:border-emerald-500 outline-none"></div>
+        <div class="grid grid-cols-2 gap-2">
+          <div><label class="block text-xs font-semibold text-gray-300 mb-1">Tipe</label>
+            <select id="adminVoucherType" class="w-full bg-gray-900 border border-gray-700 rounded-xl px-3 py-2 text-xs text-white focus:border-emerald-500 outline-none">
+              <option value="percent">Persen (%)</option><option value="fixed">Nominal (Rp)</option>
+            </select></div>
+          <div><label class="block text-xs font-semibold text-gray-300 mb-1">Nilai Diskon</label>
+            <input type="number" id="adminVoucherDiscount" required placeholder="20" class="w-full bg-gray-900 border border-gray-700 rounded-xl px-3 py-2 text-xs text-white focus:border-emerald-500 outline-none"></div>
+        </div>
+        <div class="grid grid-cols-2 gap-2">
+          <div><label class="block text-xs font-semibold text-gray-300 mb-1">Maks Diskon (%)</label>
+            <input type="number" id="adminVoucherMax" placeholder="10000" class="w-full bg-gray-900 border border-gray-700 rounded-xl px-3 py-2 text-xs text-white focus:border-emerald-500 outline-none"></div>
+          <div><label class="block text-xs font-semibold text-gray-300 mb-1">Min Order (Rp)</label>
+            <input type="number" id="adminVoucherMin" placeholder="0" class="w-full bg-gray-900 border border-gray-700 rounded-xl px-3 py-2 text-xs text-white focus:border-emerald-500 outline-none"></div>
+        </div>
+        <div><label class="block text-xs font-semibold text-gray-300 mb-1">Kuota Pemakaian (0 = ∞)</label>
+          <input type="number" id="adminVoucherLimit" placeholder="0" class="w-full bg-gray-900 border border-gray-700 rounded-xl px-3 py-2 text-xs text-white focus:border-emerald-500 outline-none"></div>
+        <button type="submit" class="w-full py-2.5 bg-emerald-500 hover:bg-emerald-400 text-black font-extrabold rounded-xl text-xs transition">Simpan Voucher</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="modalAdminDeliver" class="fixed inset-0 z-50 hidden bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="glass-card max-w-md w-full rounded-2xl p-6 border border-pink-500/40 shadow-2xl relative">
+      <button onclick="closeModal('modalAdminDeliver')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg"><i class="ri-close-line"></i></button>
+      <h3 class="text-base font-bold text-white mb-1 flex items-center gap-2"><i class="ri-send-plane-2-fill text-pink-400"></i> Kirim Kredensial Akun</h3>
+      <p class="text-xs text-gray-400 mb-4" id="deliverOrderInfo">Pesanan #-</p>
+      <form onsubmit="handleDeliverOrder(event)" class="space-y-3">
+        <input type="hidden" id="deliverOrderId">
+        <div><label class="block text-xs font-semibold text-gray-300 mb-1">Email / Username Akun CapCut</label>
+          <input type="text" id="deliverEmail" required placeholder="email@contoh.com" class="w-full bg-gray-900 border border-gray-700 rounded-xl px-3 py-2 text-xs text-white focus:border-pink-500 outline-none font-mono"></div>
+        <div><label class="block text-xs font-semibold text-gray-300 mb-1">Password Akun</label>
+          <input type="text" id="deliverPassword" required placeholder="password akun asli" class="w-full bg-gray-900 border border-gray-700 rounded-xl px-3 py-2 text-xs text-white focus:border-pink-500 outline-none font-mono"></div>
+        <div><label class="block text-xs font-semibold text-gray-300 mb-1">Catatan untuk Pembeli (Opsional)</label>
+          <textarea id="deliverNote" rows="2" placeholder="Contoh: Jangan ganti email, hanya ganti password." class="w-full bg-gray-900 border border-gray-700 rounded-xl px-3 py-2 text-xs text-white focus:border-pink-500 outline-none"></textarea></div>
+        <button type="submit" class="w-full py-2.5 bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-400 hover:to-purple-500 text-white font-extrabold rounded-xl text-xs transition flex items-center justify-center gap-2">
+          <i class="ri-send-plane-fill"></i> Kirim ke Pembeli & Tandai Selesai
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div id="modalGatewayPay" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="glass-card max-w-md w-full rounded-2xl p-6 border border-emerald-500/40 shadow-2xl relative">
+      <button onclick="closeModal('modalGatewayPay')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg"><i class="ri-close-line"></i></button>
+      <div class="text-center mb-4">
+        <div class="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 mx-auto flex items-center justify-center text-2xl mb-2"><i class="ri-qr-code-line"></i></div>
+        <h3 class="text-lg font-bold text-white">Pembayaran Flowix</h3>
+        <p class="text-xs text-gray-400" id="gwModalSubtitle">Scan QRIS atau transfer ke nomor VA berikut</p>
+      </div>
+      <div class="bg-gray-900/90 rounded-xl p-4 border border-gray-800 space-y-3">
+        <div class="flex justify-between items-center text-xs">
+          <span class="text-gray-400">ID Transaksi:</span>
+          <span id="gwOrderId" class="font-mono font-bold text-cyan-400">DEP-FLX-XXXX</span>
+        </div>
+        <div class="flex justify-between items-center text-xs">
+          <span class="text-gray-400">Total Tagihan:</span>
+          <span id="gwTotalPay" class="font-mono font-black text-emerald-400 text-base">Rp 0</span>
+        </div>
+        <div class="flex justify-between items-center text-xs">
+          <span class="text-gray-400">Metode:</span>
+          <span id="gwMethodBadge" class="px-2 py-0.5 rounded font-bold uppercase text-[10px] bg-emerald-500/20 text-emerald-400">QRIS</span>
+        </div>
+        <div id="gwQrBox" class="text-center py-2 border-t border-gray-800">
+          <div class="inline-block p-3 bg-white rounded-2xl shadow-xl">
+            <img id="gwQrImage" src="" alt="QRIS Flowix" class="w-56 h-56 mx-auto block object-contain">
+          </div>
+          <span class="text-[11px] text-gray-300 block mt-2 font-medium">Mendukung Semua Pembayaran QRIS:</span>
+          <span class="text-[10px] text-emerald-400 font-semibold block">DANA • GoPay • OVO • ShopeePay • LinkAja • BCA • Mandiri • BRI • BNI</span>
+        </div>
+        <div id="gwVaBox" class="hidden text-center py-3 border-t border-gray-800 space-y-1">
+          <p class="text-xs text-gray-400">Nomor Virtual Account:</p>
+          <div class="flex items-center justify-center gap-2">
+            <span id="gwVaNumber" class="text-lg font-mono font-black text-amber-400 tracking-wider">-</span>
+            <button onclick="copyText('gwVaNumber')" class="px-2 py-1 bg-gray-800 hover:bg-gray-700 text-gray-200 rounded text-xs"><i class="ri-file-copy-line"></i></button>
+          </div>
+        </div>
+        <div class="p-2.5 rounded-lg bg-gray-950 border border-gray-800 text-[11px] text-gray-400 text-center">
+          Status: <span id="gwLiveStatus" class="font-bold text-amber-400">Menunggu Pembayaran...</span>
+        </div>
+      </div>
+      <div class="mt-4 space-y-2">
+        <a id="gwDirectPayLink" href="#" target="_blank" class="w-full py-2.5 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-black font-extrabold rounded-xl text-xs flex items-center justify-center gap-2 transition">
+          <i class="ri-external-link-line"></i> Buka Halaman Bayar
+        </a>
+        <button onclick="checkFlowixStatusManual()" id="gwCheckBtn" class="w-full py-2 bg-gray-800 hover:bg-gray-700 text-white rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5">
+          <i class="ri-refresh-line"></i> Cek Status Pembayaran Sekarang
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 max-w-sm bg-gray-950 border border-gray-700 text-white px-4 py-3 rounded-2xl shadow-2xl flex items-center space-x-3">
+    <div id="toastIcon" class="text-xl text-pink-400"></div>
+    <div id="toastMessage" class="text-xs font-medium"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

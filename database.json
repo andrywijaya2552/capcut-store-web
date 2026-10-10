@@ -1,0 +1,158 @@
+{
+  "settings": {
+    "siteName": "CAPCUT STORE ID",
+    "siteTagline": "Jasa Beli & Aktivasi Akun CapCut Pro Terpercaya, Diproses Manual oleh Admin",
+    "contactWa": "6285812345678",
+    "announcementText": "SELAMAT DATANG DI CAPCUT STORE ID! Jasa aktivasi akun CapCut Pro, dikirim manual oleh admin, garansi & aman. Proses cepat setiap hari.",
+    "minTopup": 75,
+    "deliveryNote": "Pesanan Anda akan diproses admin maksimal 1x24 jam. Kredensial akun asli akan dikirim melalui halaman \"Akun Saya\". Pastikan WhatsApp Anda aktif untuk konfirmasi.",
+    "flowixApiKey": "sk-d2e1f23c-817d343e328c-a8fe474da8a3",
+    "flowixMerchantId": "MID-TAT2676",
+    "flowixWebhookSecret": "whsec_be106dcaa7106439561b882dd1c81731",
+    "flowixAutoActive": true
+  },
+  "users": [
+    {
+      "id": "usr_admin",
+      "username": "admin",
+      "password": "admin123",
+      "fullName": "Super Administrator",
+      "email": "admin@capcutstore.com",
+      "role": "admin",
+      "balance": 9998000,
+      "createdAt": "2026-10-09T15:37:50.941Z"
+    },
+    {
+      "id": "usr_demo",
+      "username": "demo_user",
+      "password": "password123",
+      "fullName": "Demo Member",
+      "email": "demo@capcutstore.com",
+      "role": "member",
+      "balance": 50000,
+      "createdAt": "2026-10-09T15:37:50.941Z"
+    }
+  ],
+  "packages": [
+    {
+      "id": "cc-pro-1d",
+      "name": "CapCut Pro 1 Hari",
+      "price": 2000,
+      "description": "Akun CapCut Pro aktif 1 hari, bebas watermark. Cocok untuk kebutuhan ekspor jangka pendek.",
+      "stock": 20,
+      "isPopular": false
+    },
+    {
+      "id": "cc-pro-7d",
+      "name": "CapCut Pro 7 Hari",
+      "price": 8000,
+      "description": "Akun CapCut Pro aktif 7 hari, bebas watermark + garansi replace.",
+      "stock": 15,
+      "isPopular": true
+    },
+    {
+      "id": "cc-pro-30d",
+      "name": "CapCut Pro 30 Hari",
+      "price": 25000,
+      "description": "Akun CapCut Pro aktif 30 hari, ekspor 4K 60FPS + garansi replace.",
+      "stock": 10,
+      "isPopular": true
+    },
+    {
+      "id": "cc-pro-90d",
+      "name": "CapCut Pro 90 Hari",
+      "price": 65000,
+      "description": "Akun CapCut Pro aktif 90 hari, ekspor 4K 60FPS + priority support.",
+      "stock": 8,
+      "isPopular": false
+    },
+    {
+      "id": "cc-pro-365d",
+      "name": "CapCut Pro 1 Tahun",
+      "price": 199000,
+      "description": "Akun CapCut Pro aktif 1 tahun penuh, ekspor 4K 60FPS + garansi replace.",
+      "stock": 5,
+      "isPopular": true
+    }
+  ],
+  "payments": [
+    {
+      "id": "qris",
+      "name": "QRIS All Payment (Gopay / DANA / OVO / Shopee / BCA)",
+      "accountNumber": "SCAN QR OTOMATIS",
+      "accountName": "CAPCUT STORE DIGITAL",
+      "qrImage": "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=00020101021126570011ID.DANA.WWW01189360091800000000005204581253033605802ID5916CAPCUTSTORE6007JAKARTA6304D12A",
+      "instruction": "Scan QRIS di atas melalui M-Banking atau E-Wallet apapun. Pastikan nominal transfer sesuai dengan total tiket deposit."
+    },
+    {
+      "id": "dana",
+      "name": "DANA E-Wallet",
+      "accountNumber": "085812345678",
+      "accountName": "Admin CapCut Store",
+      "qrImage": null,
+      "instruction": "Transfer ke nomor DANA di atas. Simpan bukti transfer untuk upload konfirmasi."
+    },
+    {
+      "id": "gopay",
+      "name": "GoPay E-Wallet",
+      "accountNumber": "085812345678",
+      "accountName": "Admin CapCut Store",
+      "qrImage": null,
+      "instruction": "Kirim saldo GoPay ke nomor di atas. Cantumkan username kamu jika memungkinkan."
+    },
+    {
+      "id": "bca",
+      "name": "Bank BCA",
+      "accountNumber": "8735019281",
+      "accountName": "PT CAPCUT DIGITAL INDO",
+      "qrImage": null,
+      "instruction": "Transfer ke rekening BCA di atas lalu upload bukti struk transaksi."
+    }
+  ],
+  "orders": [
+    {
+      "id": "ORD-9305",
+      "userId": "usr_admin",
+      "username": "admin",
+      "packageId": "cc-pro-1d",
+      "packageName": "CapCut Pro 1 Hari",
+      "duration": "1 Hari",
+      "price": 2000,
+      "rawPrice": 2000,
+      "discount": 0,
+      "voucherCode": null,
+      "accountEmail": "",
+      "accountPassword": "",
+      "accountNote": "",
+      "provider": "manual",
+      "status": "Processing",
+      "expiredAt": "2026-10-10T15:45:01.369Z",
+      "createdAt": "2026-10-09T15:45:01.369Z",
+      "deliveredAt": null
+    }
+  ],
+  "topups": [],
+  "vouchers": [
+    {
+      "code": "CAPCUTNEW",
+      "type": "percent",
+      "discount": 20,
+      "maxDiscount": 10000,
+      "minOrder": 2000,
+      "usageLimit": 200,
+      "usedCount": 0,
+      "isActive": true
+    },
+    {
+      "code": "HEMAT5K",
+      "type": "fixed",
+      "discount": 5000,
+      "maxDiscount": 5000,
+      "minOrder": 10000,
+      "usageLimit": 50,
+      "usedCount": 0,
+      "isActive": true
+    }
+  ],
+  "chats": []
+}
