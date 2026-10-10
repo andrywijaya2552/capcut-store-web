@@ -1,0 +1,17 @@
+# ============================================================
+# Konfigurasi Phusion Passenger untuk cPanel (metode .htaccess)
+# Gunakan file ini HANYA jika hosting Anda memakai Passenger/.htaccess.
+# Jika cPanel Anda punya menu "Setup Node.js App", TIDAK perlu file ini.
+#
+# Cara pakai:
+#   1. Ganti USERNAME dengan username cPanel Anda.
+#   2. Sesuaikan angka 18 dengan versi Node.js yang tersedia.
+#   3. Rename file ini menjadi .htaccess
+# ============================================================
+
+PassengerAppRoot /home/USERNAME/capcut-store-web
+PassengerBaseURI /
+PassengerAppType node
+PassengerStartupFile server.js
+PassengerNodejs /home/USERNAME/nodevenv/capcut-store-web/18/bin/node
+PassengerAppLogFile /home/USERNAME/capcut-store-web/passenger.log
